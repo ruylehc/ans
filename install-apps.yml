@@ -1,0 +1,22 @@
+---
+- name: Playbook - Install apps    # metadata
+  hosts: planetexpress:!farnsworth:planetexpress:!bender   # we want to take the planetexpress group and remove farnsworth
+  connection: ssh     # default is to use the connection plugin ssh.py
+  gather_facts: yes   # default is yes
+
+  tasks:                             # a list of what we want to do 
+  - name: using apt to install figlet  # metadata
+    apt:                     # the module we want to run, apt.py
+        name: figlet         # parameter name has the value figlet
+        state: present       # parameter state has the value present
+    become: yes              # elevate status to admin, sudo, enable, etc
+  - name: using apt to install cowsay  # metadata
+    apt:                     # the module we want to run, apt.py
+        name: cowsay         # parameter name has the value figlet
+        state: present       # parameter state has the value presen
+    become: yes 
+  - name: using apt to install bastet  # metadata
+    apt:                     # the module we want to run, apt.py
+        name: bastet         # parameter name has the value figlet
+        state: present       # parameter state has the value present
+    become: yes 

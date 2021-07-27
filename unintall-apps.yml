@@ -1,0 +1,22 @@
+---
+- name: Playbook - Install apps
+  hosts: planetexpress:!farnsworth:planetexpress:!bender   # remove farnsworth from the list of available hosts
+  connection: ssh     # default is to use the connection plugin ssh.py
+  gather_facts: yes   # default is yes
+
+  tasks:
+  - name: using apt to remove figlet
+    apt:
+        name: figlet
+        state: absent    # this will REMOVE the application
+    become: yes
+  - name: using apt to remove cowsay
+    apt:
+        name: cowsay
+        state: absent    # this will REMOVE the application
+    become: yes
+  - name: using apt to remove bastet
+    apt:
+        name: bastet
+        state: absent    # this will REMOVE the application
+    become: yes
