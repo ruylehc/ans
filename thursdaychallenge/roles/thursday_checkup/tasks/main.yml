@@ -1,0 +1,26 @@
+---
+# tasks file for thursday_checkup
+
+- name: Verify latest package version
+  package:
+    name: "{{ item }}"
+    state: latest
+  loop:
+  - sl
+  - cowsay
+  become: yes
+
+- name: Make sure bastet is up to date
+  package:
+    name: bastet
+    state: latest
+  become: yes
+  when: ansible_distribution == "Ubuntu"
+
+- name: Make log entry on ~/loggy.log on target hosts
+  lineinfile:
+    path: ~/loggy.log
+    state: present
+    create: yes
+    line: "{{ ansible_date_time.date }} - Passed Checkup"
+
