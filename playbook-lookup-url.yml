@@ -26,6 +26,10 @@
             set_fact:
                     spacecowboys: "{{ astros.people|map(attribute='name')|list }}"
 
+          - name: Debug spacecowboys var
+            debug:
+              var: spacecowboys
+
           - name: Only display the first names of the astros
             debug:
                     msg: "{{ item.split()[0] }}"
